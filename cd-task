@@ -1,0 +1,19 @@
+#!/bin/bash -eu
+
+# This script is used to navigate to a task folder.
+# set the following alias in your .bashrc
+# alias cd-task=". /usr/local/bin/cd-task"
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: cd-task <task-name>"
+  exit 1
+fi
+
+task_dir=$(ls | grep -E "[0-9-]+_$1" | head -n 1)
+
+if [[ -z "$task_dir" ]]; then
+  echo "No folder found."
+  exit 1
+fi
+
+cd "$task_dir"

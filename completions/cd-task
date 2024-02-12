@@ -1,0 +1,12 @@
+#!/bin/bash
+
+_cd-task() {
+  local cur prev opts
+  _get_comp_words_by_ref -n : cur prev
+
+  opts=$(ls | sed 's/[0-9-]*_//g')
+
+  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+}
+
+complete -F _cd-task cd-task

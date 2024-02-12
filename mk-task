@@ -1,0 +1,15 @@
+#!/bin/bash -eu
+
+if [[ $# -eq 0 ]]; then
+  echo "Usage: mk-task <task-name>"
+  exit 1
+fi
+
+task_name="$(date +'%Y-%m-%d')_$1"
+
+if [[ -e "$task_name" ]]; then
+  echo "Task already exists: $task_name"
+  exit 1
+fi
+
+mkdir -p "$task_name"
